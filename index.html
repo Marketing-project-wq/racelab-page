@@ -122,37 +122,38 @@
   .rpc-screen{
     background:#000;border-radius:8px;padding:0;margin-top:2px;
     border:1px solid #2a2a32;text-align:center;position:relative;overflow:hidden;
-    height:130px;  /* FIXED — never changes */
+    height:160px;
   }
   .rpc-screen::before{content:"";position:absolute;inset:0;
     background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(215,20,31,.10),transparent 70%);pointer-events:none}
-  /* all content children sit absolute so they can't push height */
-  .rpc-bib{position:absolute;top:16px;left:0;right:0;font-family:'JetBrains Mono';font-weight:800;
+  .rpc-bib{position:absolute;top:14px;left:0;right:0;font-family:'JetBrains Mono';font-weight:800;
     font-size:11px;letter-spacing:.22em;color:var(--red);text-transform:uppercase;
     opacity:0;transition:opacity .3s}
   .rpc-bib.show{opacity:1}
-  .rpc-label{position:absolute;top:32px;left:0;right:0;font-family:'JetBrains Mono';font-size:9px;
-    letter-spacing:.28em;color:#4a4a56;text-transform:uppercase;transition:opacity .3s}
+  .rpc-label{position:absolute;top:30px;left:0;right:0;font-family:'JetBrains Mono';font-size:9px;
+    letter-spacing:.24em;color:#4a4a56;text-transform:uppercase;transition:opacity .3s}
   .rpc-name{
-    position:absolute;top:50%;left:12px;right:12px;transform:translateY(-54%) scale(.88);
-    font-family:'Anton';font-size:clamp(22px,5.5vw,30px);text-transform:uppercase;
-    color:#fff;line-height:1;letter-spacing:.02em;
+    position:absolute;top:50%;left:10px;right:10px;
+    transform:translateY(-58%) scale(.88);
+    font-family:'Anton';font-size:clamp(18px,4.5vw,26px);text-transform:uppercase;
+    color:#fff;line-height:1.05;letter-spacing:.02em;
     opacity:0;transition:opacity .45s var(--ease),transform .45s var(--ease);
   }
-  .rpc-name.show{opacity:1;transform:translateY(-54%) scale(1)}
+  .rpc-name.show{opacity:1;transform:translateY(-58%) scale(1)}
   .rpc-name.flash{animation:nameflash .55s var(--ease)}
   @keyframes nameflash{0%{color:#fff}40%{color:var(--red)}100%{color:#fff}}
-  .rpc-wave{position:absolute;bottom:14px;left:0;right:0;font-family:'Barlow Condensed';font-weight:700;
-    font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--yellow);
+  .rpc-wave{position:absolute;bottom:12px;left:0;right:0;font-family:'Barlow Condensed';font-weight:700;
+    font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--yellow);
     opacity:0;transition:opacity .4s .18s var(--ease)}
   .rpc-wave.show{opacity:1}
-  .rpc-phase-tag{font-family:'JetBrains Mono';font-size:9px;letter-spacing:.22em;text-transform:uppercase;
-    color:#fff;background:var(--red);padding:3px 8px;border-radius:2px;position:absolute;top:10px;right:10px;
+  .rpc-phase-tag{font-family:'JetBrains Mono';font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+    color:#fff;background:var(--red);padding:3px 7px;border-radius:2px;
+    position:absolute;top:10px;right:10px;
     opacity:0;transition:opacity .3s,background .3s,color .3s}
   .rpc-phase-tag.show{opacity:1}
   .rpc-queue{display:flex;align-items:center;gap:10px;margin-top:10px;
-    padding:9px 12px;background:rgba(255,255,255,.04);border-radius:6px;border:1px solid rgba(255,255,255,.07);
-    height:38px;overflow:hidden}  /* fixed height */
+    padding:9px 12px;background:rgba(255,255,255,.04);border-radius:6px;
+    border:1px solid rgba(255,255,255,.07);height:38px;overflow:hidden}
   .rpc-qlabel{font-family:'JetBrains Mono';font-size:9px;letter-spacing:.22em;color:#5a5a64;text-transform:uppercase;flex:none}
   .rpc-qname{font-family:'Barlow Condensed';font-weight:700;font-size:15px;text-transform:uppercase;
     letter-spacing:.04em;color:#9a9aa6;transition:opacity .3s}
@@ -498,6 +499,15 @@
     .step{grid-template-columns:50px 1fr;gap:18px}
     .step-num{width:50px;height:50px;font-size:15px}
     .brand-logo{height:26px}
+    /* demo panels full width on mobile */
+    .step-demo{max-width:100%}
+    /* rpc screen taller on mobile so name never overlaps labels */
+    .rpc-screen{height:170px}
+    .rpc-name{font-size:clamp(16px,6vw,22px);top:48%;transform:translateY(-52%) scale(.88)}
+    .rpc-name.show{transform:translateY(-52%) scale(1)}
+    .wave-card{height:auto;min-height:200px}
+    .wave-row{grid-template-columns:1fr 1fr;gap:8px}
+    .wave-row .wave-info:last-child{grid-column:1/-1}
   }
   @media(prefers-reduced-motion:reduce){
     *{animation:none!important;transition:none!important}
