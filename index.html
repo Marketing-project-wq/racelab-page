@@ -117,29 +117,82 @@
     transition:all .2s var(--ease)}
   .mflag:hover{background:var(--red);color:#fff;border-color:var(--red)}
 
-  /* rpc tabs */
-  .rpc-tabs{display:flex;gap:6px;margin-bottom:14px}
-  .rpc-tab{font-family:'Barlow Condensed';font-weight:800;font-size:13px;letter-spacing:.08em;
-    text-transform:uppercase;border:1px solid #3a3a44;background:transparent;color:#8b8b96;
-    border-radius:4px;padding:6px 14px;cursor:pointer;transition:all .2s}
-  .rpc-tab.active{background:var(--red);color:#fff;border-color:var(--red)}
+  /* rpc name-on-screen demo */
+  .demo-rpc{padding:16px 18px 18px}
+  .rpc-screen{
+    background:#000;border-radius:8px;padding:0;margin-top:2px;
+    border:1px solid #2a2a32;text-align:center;position:relative;overflow:hidden;
+    height:130px;  /* FIXED — never changes */
+  }
+  .rpc-screen::before{content:"";position:absolute;inset:0;
+    background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(215,20,31,.10),transparent 70%);pointer-events:none}
+  /* all content children sit absolute so they can't push height */
+  .rpc-bib{position:absolute;top:16px;left:0;right:0;font-family:'JetBrains Mono';font-weight:800;
+    font-size:11px;letter-spacing:.22em;color:var(--red);text-transform:uppercase;
+    opacity:0;transition:opacity .3s}
+  .rpc-bib.show{opacity:1}
+  .rpc-label{position:absolute;top:32px;left:0;right:0;font-family:'JetBrains Mono';font-size:9px;
+    letter-spacing:.28em;color:#4a4a56;text-transform:uppercase;transition:opacity .3s}
+  .rpc-name{
+    position:absolute;top:50%;left:12px;right:12px;transform:translateY(-54%) scale(.88);
+    font-family:'Anton';font-size:clamp(22px,5.5vw,30px);text-transform:uppercase;
+    color:#fff;line-height:1;letter-spacing:.02em;
+    opacity:0;transition:opacity .45s var(--ease),transform .45s var(--ease);
+  }
+  .rpc-name.show{opacity:1;transform:translateY(-54%) scale(1)}
+  .rpc-name.flash{animation:nameflash .55s var(--ease)}
+  @keyframes nameflash{0%{color:#fff}40%{color:var(--red)}100%{color:#fff}}
+  .rpc-wave{position:absolute;bottom:14px;left:0;right:0;font-family:'Barlow Condensed';font-weight:700;
+    font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--yellow);
+    opacity:0;transition:opacity .4s .18s var(--ease)}
+  .rpc-wave.show{opacity:1}
+  .rpc-phase-tag{font-family:'JetBrains Mono';font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+    color:#fff;background:var(--red);padding:3px 8px;border-radius:2px;position:absolute;top:10px;right:10px;
+    opacity:0;transition:opacity .3s,background .3s,color .3s}
+  .rpc-phase-tag.show{opacity:1}
+  .rpc-queue{display:flex;align-items:center;gap:10px;margin-top:10px;
+    padding:9px 12px;background:rgba(255,255,255,.04);border-radius:6px;border:1px solid rgba(255,255,255,.07);
+    height:38px;overflow:hidden}  /* fixed height */
+  .rpc-qlabel{font-family:'JetBrains Mono';font-size:9px;letter-spacing:.22em;color:#5a5a64;text-transform:uppercase;flex:none}
+  .rpc-qname{font-family:'Barlow Condensed';font-weight:700;font-size:15px;text-transform:uppercase;
+    letter-spacing:.04em;color:#9a9aa6;transition:opacity .3s}
 
-  /* qr scan demo */
-  .qr-scan{display:flex;gap:12px;align-items:flex-start}
-  .qr-box{position:relative;width:84px;height:84px;flex:none;background:#101015;
-    border-radius:6px;display:flex;align-items:center;justify-content:center;overflow:hidden}
-  .qr-corner{position:absolute;width:14px;height:14px;border-color:var(--red);border-style:solid}
-  .qr-corner.tl{top:5px;left:5px;border-width:2px 0 0 2px}
-  .qr-corner.tr{top:5px;right:5px;border-width:2px 2px 0 0}
-  .qr-corner.bl{bottom:5px;left:5px;border-width:0 0 2px 2px}
-  .qr-corner.br{bottom:5px;right:5px;border-width:0 2px 2px 0}
-  .qr-line{position:absolute;top:0;left:8px;right:8px;height:2px;background:var(--red);
-    box-shadow:0 0 8px var(--red);animation:qrscan 1.8s ease-in-out infinite}
-  @keyframes qrscan{0%{top:8px}50%{top:calc(100% - 8px)}100%{top:8px}}
-  #qrTxt{font-family:'JetBrains Mono';font-size:9px;letter-spacing:.14em;color:#6d6d78;text-transform:uppercase}
-  .qr-result{flex:1}
-  #packStatus{transition:color .3s}
-  #packStatus.ok{color:#22d39a}
+  /* wave assignment card */
+  .demo-wave{padding:16px 18px 18px}
+  .wave-card{background:#000;border-radius:8px;padding:18px 16px;border:1px solid #2a2a32;
+    position:relative;overflow:hidden;height:210px}  /* FIXED */
+  .wave-card::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 50% 100%,rgba(215,20,31,.10),transparent 70%)}
+  .wave-athlete{font-family:'Anton';font-size:20px;text-transform:uppercase;color:#fff;margin-bottom:14px;letter-spacing:.02em}
+  .wave-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+  .wave-info{}
+  .wave-tag{font-family:'JetBrains Mono';font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:#4a4a56;margin-bottom:4px}
+  .wave-num{font-family:'JetBrains Mono';font-weight:800;font-size:22px;color:var(--red);line-height:1}
+  .wave-cat{font-family:'Barlow Condensed';font-weight:700;font-size:13px;text-transform:uppercase;color:#fff;line-height:1.2}
+  .wave-time{font-family:'JetBrains Mono';font-weight:700;font-size:14px;color:var(--yellow);line-height:1}
+  .wave-cd-label{font-family:'JetBrains Mono';font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:#4a4a56;margin-bottom:6px}
+  .wave-cd{font-family:'JetBrains Mono';font-weight:800;font-size:38px;line-height:1;color:#fff;letter-spacing:.02em;display:flex;align-items:baseline;gap:1px}
+  .wave-colon{color:var(--red);animation:blink 1s steps(1) infinite}
+  .wave-bar-wrap{margin-top:14px}
+  .wave-bar-track{height:3px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden}
+  .wave-bar-fill{height:100%;background:linear-gradient(90deg,var(--red),var(--magenta));width:0;border-radius:2px;transition:width .9s var(--ease)}
+  .rpc-name{
+    font-family:'Anton';font-size:clamp(22px,5.5vw,34px);text-transform:uppercase;
+    color:#fff;line-height:1;letter-spacing:.02em;
+    opacity:0;transform:scale(.88) translateY(6px);
+    transition:opacity .45s var(--ease),transform .45s var(--ease);
+  }
+  .rpc-name.show{opacity:1;transform:scale(1) translateY(0)}
+  .rpc-name.flash{animation:nameflash .55s var(--ease)}
+  @keyframes nameflash{0%{color:#fff}40%{color:var(--red)}100%{color:#fff}}
+  .rpc-wave{font-family:'Barlow Condensed';font-weight:700;font-size:13px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--yellow);margin-top:4px;
+    opacity:0;transition:opacity .4s .18s var(--ease)}
+  .rpc-wave.show{opacity:1}
+  .rpc-queue{display:flex;align-items:center;gap:10px;margin-top:12px;
+    padding:9px 12px;background:rgba(255,255,255,.04);border-radius:6px;border:1px solid rgba(255,255,255,.07)}
+  .rpc-qlabel{font-family:'JetBrains Mono';font-size:9px;letter-spacing:.22em;color:#5a5a64;text-transform:uppercase;flex:none}
+  .rpc-qname{font-family:'Barlow Condensed';font-weight:700;font-size:15px;text-transform:uppercase;
+    letter-spacing:.04em;color:#9a9aa6}
 
   /* why-tech section */
   .why-tech{background:var(--ink);color:var(--paper)}
@@ -261,22 +314,22 @@
   /* ---------- STEP DEMOS ---------- */
   .step-demo{margin-top:18px;max-width:440px;background:linear-gradient(180deg,#16161c,#0c0c10);
     border:1px solid #26262e;border-radius:10px;padding:18px 20px;position:relative;overflow:hidden;
-    box-shadow:0 24px 50px -34px rgba(16,16,20,.5)}
+    box-shadow:0 24px 50px -34px rgba(16,16,20,.5);
+    /* KEY: contain layout so internal changes never cause page reflow */
+    contain:layout style;will-change:unset}
   .step-demo::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;
     background:linear-gradient(90deg,var(--red),var(--magenta))}
   .scr-top{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono';font-size:10px;
-    letter-spacing:.16em;text-transform:uppercase;color:#8b8b96;margin-bottom:14px}
-  .scr-dot{width:7px;height:7px;border-radius:50%;background:#22d39a;animation:pulse 1.6s infinite}
+    letter-spacing:.16em;text-transform:uppercase;color:#8b8b96;margin-bottom:14px;
+    height:18px;overflow:hidden}
+  .scr-dot{width:7px;height:7px;border-radius:50%;background:#22d39a;flex:none;animation:pulse 1.6s infinite}
   .aud{margin-left:auto;display:inline-flex;align-items:center;gap:5px;color:#c9c9d2;letter-spacing:.08em}
 
-  /* 01 welcome */
-  .welcome-line{font-family:'JetBrains Mono';font-size:12px;letter-spacing:.22em;color:#8b8b96}
-  .welcome-name{font-family:'Anton';font-size:30px;text-transform:uppercase;color:#fff;line-height:1.05;margin:6px 0 4px;min-height:34px}
+  /* 01 welcome (old CSS kept for compat but not used) */
   .welcome-name .cur{color:var(--red);animation:blink 1s steps(1) infinite}
   @keyframes blink{50%{opacity:0}}
-  .welcome-sub{font-family:'Barlow Condensed';font-weight:600;font-size:14px;letter-spacing:.04em;text-transform:uppercase;color:var(--yellow)}
 
-  /* 02 check-in */
+  /* 02 check-in rows (leaderboard reuses .ci-row) */
   .ci-row{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid var(--board-line);font-size:13.5px}
   .ci-row span{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#8b8b96}
   .ci-row b{color:#fff;font-weight:600;text-align:right}
@@ -297,28 +350,32 @@
     background:var(--red);box-shadow:0 0 14px var(--red);transform:translateY(-50%)}
   .chip-dot.run{animation:chipcross 2.4s linear forwards}
   @keyframes chipcross{from{left:-20px}to{left:calc(100% + 20px)}}
-  .chip-events{display:flex;gap:10px;margin-top:14px}
-  .ev{flex:1;display:flex;align-items:center;gap:7px;font-family:'JetBrains Mono';font-size:11px;
-    letter-spacing:.08em;color:#6d6d78;background:#101015;border:1px solid var(--board-line);border-radius:5px;padding:8px 10px;transition:all .3s}
-  .ev b{margin-left:auto;color:#6d6d78;font-weight:700}
-  .ev i{width:7px;height:7px;border-radius:50%;background:#3a3a44;transition:background .3s}
+  .chip-events{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+  .ev{flex:1;min-width:0;display:flex;align-items:center;gap:6px;font-family:'JetBrains Mono';font-size:10px;
+    letter-spacing:.06em;color:#6d6d78;background:#101015;border:1px solid var(--board-line);border-radius:5px;
+    padding:8px 10px;transition:color .3s,border-color .3s;white-space:nowrap;overflow:hidden}
+  .ev b{margin-left:auto;color:#6d6d78;font-weight:700;font-size:10px;flex-shrink:0;transition:color .3s}
+  .ev i{width:7px;height:7px;border-radius:50%;background:#3a3a44;flex:none;transition:background .3s}
   .ev.hit{color:#fff;border-color:rgba(34,211,154,.4)}
   .ev.hit i{background:#22d39a;box-shadow:0 0 8px #22d39a}
   .ev.hit b{color:#22d39a}
 
-  /* 04 leaderboard */
-  .lb{display:flex;flex-direction:column;gap:3px}
+  /* 04 leaderboard — fixed height container */
+  .lb{display:flex;flex-direction:column;gap:3px;min-height:120px}
   .lb-row{display:grid;grid-template-columns:22px 1fr auto;gap:10px;align-items:center;
-    padding:8px 8px;border-radius:5px;font-size:13px;color:#e7e7ea;transition:background .4s,transform .4s var(--ease)}
+    padding:8px 8px;border-radius:5px;font-size:13px;color:#e7e7ea;
+    transition:background .4s}
   .lb-row .p{font-family:'JetBrains Mono';font-weight:800;color:#8b8b96;font-size:12px}
   .lb-row.lead{background:rgba(215,20,31,.16)}
   .lb-row.lead .p{color:var(--yellow)}
   .lb-row .t{font-family:'JetBrains Mono';font-weight:700;font-size:12.5px}
   .lb-row.bump{background:rgba(34,211,154,.12)}
 
-  /* 05 finish email */
+  /* 05 finish email — fixed height wrapper */
+  .email-wrap{min-height:80px}
   .email-card{display:flex;gap:12px;background:#101015;border:1px solid var(--board-line);border-radius:8px;
-    padding:14px;opacity:0;transform:translateY(12px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+    padding:14px;opacity:0;transform:translateY(8px);
+    transition:opacity .5s var(--ease),transform .5s var(--ease)}
   .email-card.show{opacity:1;transform:none}
   .email-ic{width:38px;height:38px;flex:none;border-radius:8px;background:rgba(215,20,31,.16);
     border:1px solid rgba(215,20,31,.4);display:flex;align-items:center;justify-content:center;color:#ff6b75;font-size:18px}
@@ -328,7 +385,8 @@
   .email-body p span{font-family:'JetBrains Mono';color:var(--yellow);font-weight:700}
   #finBtn{margin-top:12px}
 
-  /* 06 revenue */
+  /* 06 revenue — fixed height */
+  .rev-wrap{min-height:70px}
   .rev{font-family:'JetBrains Mono';font-weight:800;font-size:46px;line-height:1;color:#22d39a;letter-spacing:-.01em}
   .rev-sub{font-family:'Barlow Condensed';font-weight:600;font-size:14px;letter-spacing:.04em;text-transform:uppercase;color:#8b8b96;margin-top:8px}
   .rev-sub span{color:#fff;font-family:'JetBrains Mono';font-weight:700}
@@ -530,13 +588,21 @@
       <div class="step" data-demo="0">
         <div class="step-num">01</div>
         <div class="step-body">
-          <h3>Welcome System <span class="chip">Arrival</span></h3>
-          <p>The moment athletes arrive at race pack collection, the system greets them — turning a queue into part of the show and setting the tone before they even reach the start line.</p>
-          <div class="step-demo">
-            <div class="scr-top"><span class="scr-dot"></span> WELCOME SCREEN</div>
-            <div class="welcome-line">WELCOME,</div>
-            <div class="welcome-name" id="welcomeName">&nbsp;</div>
-            <div class="welcome-sub">to SportFest Vol.3 · Jakarta Hybrid Race</div>
+          <h3>Welcome, Registration &amp; Race Pack Collection <span class="chip">Arrival</span></h3>
+          <p>From the moment athletes walk in, the system takes over — greeting them by name on screen, confirming registration instantly, and logging race pack collection. One seamless flow from door to start line.</p>
+          <div class="step-demo demo-rpc">
+            <div class="scr-top"><span class="scr-dot"></span> <span id="rpcPhaseLabel">WELCOME SCREEN</span></div>
+            <div class="rpc-screen" id="rpcScreen">
+              <div class="rpc-phase-tag" id="rpcPhaseTag">WELCOME</div>
+              <div class="rpc-bib" id="rpcBib">&nbsp;</div>
+              <div class="rpc-label" id="rpcLabel">WELCOME,</div>
+              <div class="rpc-name" id="rpcName">&nbsp;</div>
+              <div class="rpc-wave" id="rpcWave">&nbsp;</div>
+            </div>
+            <div class="rpc-queue">
+              <span class="rpc-qlabel">UP NEXT</span>
+              <span class="rpc-qname" id="rpcNext">&nbsp;</span>
+            </div>
           </div>
         </div>
       </div>
@@ -544,38 +610,31 @@
       <div class="step" data-demo="1">
         <div class="step-num">02</div>
         <div class="step-body">
-          <h3>Registration &amp; Race Pack Collection <span class="chip">Verify</span></h3>
-          <p>Digitise your entire Race Pack Collection process. Athletes scan their QR, data confirms instantly, and the system prints their label and logs their pack as collected — no queues, no paperwork, no human error.</p>
-          <div class="step-demo">
-            <div class="rpc-tabs">
-              <button class="rpc-tab active" data-tab="rpc">Race Pack</button>
-              <button class="rpc-tab" data-tab="ci">Check-In</button>
-            </div>
-            <div id="tabRpc" class="rpc-panel">
-              <div class="scr-top"><span class="scr-dot"></span> RACE PACK COLLECTION</div>
-              <div class="qr-scan">
-                <div class="qr-box" id="qrBox">
-                  <div class="qr-corner tl"></div><div class="qr-corner tr"></div>
-                  <div class="qr-corner bl"></div><div class="qr-corner br"></div>
-                  <div class="qr-line" id="qrLine"></div>
-                  <span id="qrTxt">SCAN QR</span>
+          <h3>Wave Assignment &amp; Start Countdown <span class="chip">Ready</span></h3>
+          <p>The system auto-assigns each athlete to their wave based on category and registration. They see exactly how long until their wave starts — so everyone's prepared, on time, and in the right place.</p>
+          <div class="step-demo demo-wave">
+            <div class="scr-top"><span class="scr-dot"></span> WAVE ASSIGNMENT · LIVE</div>
+            <div class="wave-card">
+              <div class="wave-athlete" id="waveAthlete">Jason Wu</div>
+              <div class="wave-row">
+                <div class="wave-info">
+                  <div class="wave-tag">YOUR WAVE</div>
+                  <div class="wave-num" id="waveNum">—</div>
                 </div>
-                <div class="qr-result" id="qrResult">
-                  <div class="ci-row"><span>BIB</span><b>1042</b></div>
-                  <div class="ci-row"><span>Name</span><b>Cleveria Jessika</b></div>
-                  <div class="ci-row"><span>Pack</span><b id="packStatus">Awaiting scan…</b></div>
+                <div class="wave-info">
+                  <div class="wave-tag">CATEGORY</div>
+                  <div class="wave-cat" id="waveCat">—</div>
+                </div>
+                <div class="wave-info">
+                  <div class="wave-tag">START TIME</div>
+                  <div class="wave-time" id="waveTime">—</div>
                 </div>
               </div>
-            </div>
-            <div id="tabCi" class="rpc-panel" style="display:none">
-              <div class="scr-top"><span class="scr-dot"></span> CHECK-IN · VERIFY</div>
-              <div class="ci-row"><span>BIB</span><b>1042</b></div>
-              <div class="ci-row"><span>Name</span><b>Cleveria Jessika</b></div>
-              <div class="ci-row"><span>Category</span><b>Single Women Full · Wave 12</b></div>
-              <div class="ci-foot">
-                <span class="ci-status" id="ciStatus">PENDING</span>
-                <button class="demo-mini-btn" id="ciBtn">Confirm check-in</button>
+              <div class="wave-cd-label">YOUR WAVE STARTS IN</div>
+              <div class="wave-cd" id="waveCd">
+                <span id="cdMm">--</span><span class="wave-colon">:</span><span id="cdSs">--</span>
               </div>
+              <div class="wave-bar-wrap"><div class="wave-bar-track"><div class="wave-bar-fill" id="waveBarFill"></div></div></div>
             </div>
           </div>
         </div>
@@ -616,12 +675,14 @@
           <p>The instant an athlete crosses the line, the system fires a congratulations email with their result — no waiting, no manual follow-up from your team.</p>
           <div class="step-demo">
             <div class="scr-top"><span class="scr-dot"></span> FINISH AUTOMATION</div>
-            <div class="email-card" id="emailCard">
-              <div class="email-ic">✉</div>
-              <div class="email-body">
-                <div class="email-meta">noreply@racelab.id · just now</div>
-                <b>Congratulations, Rizal! 🎉</b>
-                <p>You crossed the line in <span>00:44:31</span>. Your full result and finisher photos are ready.</p>
+            <div class="email-wrap">
+              <div class="email-card" id="emailCard">
+                <div class="email-ic">✉</div>
+                <div class="email-body">
+                  <div class="email-meta">noreply@racelab.id · just now</div>
+                  <b>Congratulations, Rizal! 🎉</b>
+                  <p>You crossed the line in <span>00:44:31</span>. Your full result and finisher photos are ready.</p>
+                </div>
               </div>
             </div>
             <button class="demo-mini-btn" id="finBtn">Replay</button>
@@ -636,8 +697,10 @@
           <p>Athletes find their race photos instantly with face recognition and buy them in a few taps — turning event imagery into a new revenue stream for organizers.</p>
           <div class="step-demo">
             <div class="scr-top"><span class="scr-dot"></span> PHOTO REVENUE · LIVE</div>
-            <div class="rev" id="revCount">$0</div>
-            <div class="rev-sub"><span id="photosSold">0</span> photos sold this event</div>
+            <div class="rev-wrap">
+              <div class="rev" id="revCount">$0</div>
+              <div class="rev-sub"><span id="photosSold">0</span> photos sold this event</div>
+            </div>
           </div>
         </div>
       </div>
@@ -870,49 +933,117 @@
   const playedSteps = new Set();
   const pad = (n,l=2)=>String(n).padStart(l,'0');
 
-  // 01 — Welcome: type athlete names
-  function demoWelcome(){
-    const el = document.getElementById('welcomeName'); if(!el) return;
-    const names = ['MUHAMMAD AL FARIZKI','CLEVERIA JESSIKA','RIZAL AZIZ','NADIA PUTRI'];
-    let ni = 0;
-    function typeName(name){
-      let i = 0; el.textContent='';
-      const t = setInterval(()=>{
-        el.innerHTML = name.slice(0,i) + '<span class="cur">|</span>';
-        if(++i > name.length){ clearInterval(t); setTimeout(()=>{ ni=(ni+1)%names.length; typeName(names[ni]); }, 1600); }
-      }, 55);
-    }
-    typeName(names[0]);
+  // Web Audio chime
+  let _ac=null;
+  function getAC(){ if(!_ac){ try{ _ac=new(window.AudioContext||window.webkitAudioContext)(); }catch(e){} } return _ac; }
+  function playChime(){
+    const ac=getAC(); if(!ac) return;
+    if(ac.state==='suspended') ac.resume();
+    [523.25,659.25,783.99,1046.5].forEach((freq,i)=>{
+      const osc=ac.createOscillator(),gain=ac.createGain();
+      osc.connect(gain); gain.connect(ac.destination);
+      osc.type='sine'; osc.frequency.value=freq;
+      const t=ac.currentTime+i*0.10;
+      gain.gain.setValueAtTime(0,t);
+      gain.gain.linearRampToValueAtTime(0.18,t+0.02);
+      gain.gain.exponentialRampToValueAtTime(0.0001,t+0.55);
+      osc.start(t); osc.stop(t+0.6);
+    });
   }
 
-  // 02 — RPC tabs + check-in confirm
-  function runCheckIn(){
-    const st=document.getElementById('ciStatus'); if(!st) return;
-    st.textContent='PENDING'; st.classList.remove('done');
-    setTimeout(()=>{ st.textContent='✓ CHECKED IN'; st.classList.add('done'); }, 650);
+  const demoFns=[demoWelcomeRPC,demoWave,demoChip,demoLeaderboard,demoFinish,demoRevenue];
+  function demoWelcomeRPC(){
+    const athletes=[
+      {bib:'#0842',name:'JASON WU',        wave:'Wave 8 · Single Men Full',   pack:'RACE PACK COLLECTED ✓', next:'Cleveria Jessika'},
+      {bib:'#1042',name:'CLEVERIA JESSIKA', wave:'Wave 12 · Single Women Full', pack:'RACE PACK COLLECTED ✓', next:'Rizal Aziz'},
+      {bib:'#0317',name:'RIZAL AZIZ',       wave:'Wave 6 · Single Men Full',   pack:'RACE PACK COLLECTED ✓', next:'Nadia Putri'},
+      {bib:'#0591',name:'NADIA PUTRI',      wave:'Wave 4 · Single Women Half', pack:'RACE PACK COLLECTED ✓', next:'Jason Wu'},
+    ];
+    let idx=0, outerTimer=null;
+    function runAthlete(a){
+      const phaseLabel = document.getElementById('rpcPhaseLabel');
+      const phaseTag   = document.getElementById('rpcPhaseTag');
+      const bibEl  = document.getElementById('rpcBib');
+      const labelEl= document.getElementById('rpcLabel');
+      const nmEl   = document.getElementById('rpcName');
+      const wvEl   = document.getElementById('rpcWave');
+      const nxEl   = document.getElementById('rpcNext');
+      if(!nmEl) return;
+      // reset all
+      [bibEl,nmEl,wvEl,phaseTag].forEach(el=>{ if(el){ el.classList.remove('show','flash'); el.textContent=''; } });
+      if(labelEl) labelEl.textContent='WELCOME,';
+      if(phaseLabel) phaseLabel.textContent='WELCOME SCREEN';
+      if(nxEl) nxEl.textContent=a.next;
+
+      // PHASE 1 — Welcome (name big, no bib)
+      setTimeout(()=>{
+        nmEl.textContent=a.name; nmEl.classList.add('show'); playChime();
+        setTimeout(()=>nmEl.classList.add('flash'),60);
+        if(wvEl){ wvEl.textContent='SportFest Vol.3 · Jakarta Hybrid Race'; wvEl.classList.add('show'); }
+      },150);
+
+      // PHASE 2 — Registration
+      setTimeout(()=>{
+        [nmEl,wvEl].forEach(el=>{ el.classList.remove('show','flash'); });
+        void nmEl.offsetWidth;
+        if(phaseLabel) phaseLabel.textContent='REGISTRATION · VERIFY';
+        if(phaseTag){ phaseTag.textContent='REGISTERING'; phaseTag.classList.add('show'); }
+        if(bibEl){ bibEl.textContent=a.bib; bibEl.classList.add('show'); }
+        if(labelEl) labelEl.textContent='NOW REGISTERING';
+        setTimeout(()=>{ nmEl.textContent=a.name; nmEl.classList.add('show'); playChime(); },200);
+        setTimeout(()=>{ if(wvEl){ wvEl.textContent=a.wave; wvEl.classList.add('show'); } },420);
+      },2000);
+
+      // PHASE 3 — Race Pack Collected
+      setTimeout(()=>{
+        if(phaseLabel) phaseLabel.textContent='RACE PACK COLLECTION';
+        if(phaseTag){ phaseTag.textContent='✓ COLLECTED'; phaseTag.style.background='#22d39a'; phaseTag.style.color='#000'; }
+        if(labelEl) labelEl.textContent='RACE PACK';
+      },3800);
+    }
+    runAthlete(athletes[0]);
+    outerTimer=setInterval(()=>{
+      idx=(idx+1)%athletes.length;
+      const phaseTag=document.getElementById('rpcPhaseTag');
+      if(phaseTag){ phaseTag.style.background=''; phaseTag.style.color=''; }
+      runAthlete(athletes[idx]);
+    },5800);
+    setTimeout(()=>clearInterval(outerTimer),60000);
   }
-  function demoCheckIn(){
-    // wire tabs
-    document.querySelectorAll('.rpc-tab').forEach(tab=>{
-      if(!tab.dataset.bound){ tab.dataset.bound='1';
-        tab.addEventListener('click',()=>{
-          document.querySelectorAll('.rpc-tab').forEach(t=>t.classList.remove('active'));
-          tab.classList.add('active');
-          const target = tab.dataset.tab;
-          document.getElementById('tabRpc').style.display = target==='rpc'?'block':'none';
-          document.getElementById('tabCi').style.display  = target==='ci' ?'block':'none';
-        });
+
+  // 02 — Wave assignment + live countdown
+  function demoWave(){
+    const waves=[
+      {name:'Jason Wu',     num:'W08', cat:'Single Men\nFull',    time:'08:45 AM', minLeft:12},
+      {name:'Cleveria',     num:'W12', cat:'Single Women\nFull',  time:'09:15 AM', minLeft:26},
+      {name:'Rizal Aziz',   num:'W06', cat:'Single Men\nFull',    time:'08:25 AM', minLeft:6},
+      {name:'Nadia Putri',  num:'W04', cat:'Single Women\nHalf',  time:'08:05 AM', minLeft:43},
+    ];
+    let wi=0, cdTimer=null, swapTimer=null;
+    function startWave(w){
+      document.getElementById('waveAthlete').textContent=w.name;
+      document.getElementById('waveNum').textContent=w.num;
+      document.getElementById('waveCat').textContent=w.cat;
+      document.getElementById('waveTime').textContent=w.time;
+      let totalSec=w.minLeft*60;
+      const fill=document.getElementById('waveBarFill');
+      const pct=Math.min(100,Math.max(5,(1-totalSec/(60*60))*100));
+      if(fill) fill.style.width=pct+'%';
+      clearInterval(cdTimer);
+      function tick(){
+        const m=Math.floor(totalSec/60), s=totalSec%60;
+        const mmEl=document.getElementById('cdMm'), ssEl=document.getElementById('cdSs');
+        if(mmEl) mmEl.textContent=String(m).padStart(2,'0');
+        if(ssEl) ssEl.textContent=String(s).padStart(2,'0');
+        if(totalSec>0) totalSec--;
       }
-    });
-    // auto QR scan
-    setTimeout(()=>{
-      const ps=document.getElementById('packStatus'); if(!ps) return;
-      ps.textContent='✓ COLLECTED'; ps.classList.add('ok');
-    }, 1400);
-    // wire check-in button
-    const btn=document.getElementById('ciBtn');
-    if(btn && !btn.dataset.bound){ btn.dataset.bound='1'; btn.addEventListener('click',runCheckIn); }
-    runCheckIn();
+      tick(); cdTimer=setInterval(tick,1000);
+    }
+    startWave(waves[0]);
+    swapTimer=setInterval(()=>{
+      wi=(wi+1)%waves.length; clearInterval(cdTimer); startWave(waves[wi]);
+    },8000);
+    setTimeout(()=>{ clearInterval(cdTimer); clearInterval(swapTimer); },60000);
   }
 
   // 03 — Chip timing: clone trick to restart CSS animation reliably
@@ -929,35 +1060,46 @@
     setTimeout(()=>{ if(f){ f.classList.add('hit'); f.querySelector('b').textContent='00:41:52'; } }, 2300);
   }
 
-  // 04 — Live leaderboard realtime + audience
+  // 04 — Live leaderboard: pre-render rows, update in-place (no innerHTML rebuild = no reflow)
   let lbTimer=null, audTimer=null;
   function demoLeaderboard(){
     const lb=document.getElementById('lb'); if(!lb) return;
     let racers=[
-      {n:'M. Al Farizki', s:2512},
-      {n:'Cleveria Jessika', s:2589},
-      {n:'Rizal Aziz', s:2671},
-      {n:'Nadia Putri', s:2744}
+      {n:'Jason Wu',        s:2512},
+      {n:'Cleveria Jessika',s:2589},
+      {n:'Rizal Aziz',      s:2671},
+      {n:'Nadia Putri',     s:2744}
     ];
     function fmt(sec){return pad(Math.floor(sec/3600))+':'+pad(Math.floor(sec%3600/60))+':'+pad(sec%60);}
-    function render(bumpIdx){
+    // build rows once
+    lb.innerHTML = racers.map((_,i)=>
+      `<div class="lb-row"><span class="p">${i+1}</span><span class="nm"></span><span class="t"></span></div>`
+    ).join('');
+    const rows=lb.querySelectorAll('.lb-row');
+    function render(){
       racers.sort((a,b)=>a.s-b.s);
-      lb.innerHTML = racers.map((r,i)=>`<div class="lb-row${i===0?' lead':''}${r._b?' bump':''}"><span class="p">${i+1}</span><span class="nm">${r.n}</span><span class="t">${fmt(r.s)}</span></div>`).join('');
+      racers.forEach((r,i)=>{
+        const row=rows[i]; if(!row) return;
+        row.querySelector('.nm').textContent=r.n;
+        row.querySelector('.t').textContent=fmt(r.s);
+        row.classList.toggle('lead',i===0);
+        row.classList.toggle('bump',!!r._b);
+        row.querySelector('.p').textContent=i+1;
+      });
     }
     render();
     clearInterval(lbTimer);
     let ticks=0;
     lbTimer=setInterval(()=>{
       racers.forEach(r=>r._b=false);
-      const r = racers[Math.floor(Math.random()*racers.length)];
-      r.s += Math.floor(Math.random()*4)+1; r._b=true;
+      const r=racers[Math.floor(Math.random()*racers.length)];
+      r.s+=Math.floor(Math.random()*4)+1; r._b=true;
       render();
       if(++ticks>14){ clearInterval(lbTimer); racers.forEach(r=>r._b=false); render(); }
-    }, 700);
-    // audience counter
+    },700);
     const aud=document.getElementById('audCount'); let a=0; const target=1240+Math.floor(Math.random()*200);
     clearInterval(audTimer);
-    audTimer=setInterval(()=>{ a+=Math.floor((target-a)/8)+7; if(a>=target){a=target; clearInterval(audTimer);} aud.textContent=a.toLocaleString(); }, 60);
+    audTimer=setInterval(()=>{ a+=Math.floor((target-a)/8)+7; if(a>=target){a=target;clearInterval(audTimer);} aud.textContent=a.toLocaleString(); },60);
   }
 
   // 05 — Finish automation email
@@ -985,7 +1127,6 @@
     requestAnimationFrame(step);
   }
 
-  const demoFns=[demoWelcome,demoCheckIn,demoChip,demoLeaderboard,demoFinish,demoRevenue];
   function playStepDemo(i){ try{ demoFns[i] && demoFns[i](); }catch(e){} }
 
   function progressTimeline(){
