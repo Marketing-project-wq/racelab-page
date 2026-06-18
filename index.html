@@ -149,11 +149,9 @@
     text-transform:uppercase;color:var(--yellow);line-height:1;
     opacity:0;transition:opacity .4s .18s var(--ease);min-height:14px}
   .rpc-wave.show{opacity:1}
-  /* phase tag stays absolute top-right, small enough not to interfere */
   .rpc-phase-tag{font-family:'JetBrains Mono';font-size:9px;letter-spacing:.18em;text-transform:uppercase;
-    color:#fff;background:var(--red);padding:3px 7px;border-radius:2px;
-    position:absolute;top:10px;right:10px;z-index:2;
-    opacity:0;transition:opacity .3s,background .3s,color .3s}
+    color:#fff;background:var(--red);padding:3px 10px;border-radius:2px;
+    opacity:0;transition:opacity .3s,background .3s,color .3s;line-height:1}
   .rpc-phase-tag.show{opacity:1}
   .rpc-queue{display:flex;align-items:center;gap:10px;margin-top:10px;
     padding:9px 12px;background:rgba(255,255,255,.04);border-radius:6px;
@@ -604,7 +602,7 @@
           <div class="step-demo demo-rpc">
             <div class="scr-top"><span class="scr-dot"></span> <span id="rpcPhaseLabel">WELCOME SCREEN</span></div>
             <div class="rpc-screen" id="rpcScreen">
-              <div class="rpc-phase-tag" id="rpcPhaseTag">WELCOME</div>
+              <div class="rpc-phase-tag" id="rpcPhaseTag"></div>
               <div class="rpc-bib" id="rpcBib">&nbsp;</div>
               <div class="rpc-label" id="rpcLabel">WELCOME,</div>
               <div class="rpc-name" id="rpcName">&nbsp;</div>
