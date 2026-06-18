@@ -120,41 +120,46 @@
   /* rpc name-on-screen demo */
   .demo-rpc{padding:16px 18px 18px}
   .rpc-screen{
-    background:#000;border-radius:8px;padding:0;margin-top:2px;
+    background:#000;border-radius:8px;margin-top:2px;
     border:1px solid #2a2a32;text-align:center;position:relative;overflow:hidden;
-    height:160px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:4px;padding:14px 12px;min-height:140px;
   }
   .rpc-screen::before{content:"";position:absolute;inset:0;
-    background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(215,20,31,.10),transparent 70%);pointer-events:none}
-  .rpc-bib{position:absolute;top:14px;left:0;right:0;font-family:'JetBrains Mono';font-weight:800;
-    font-size:11px;letter-spacing:.22em;color:var(--red);text-transform:uppercase;
-    opacity:0;transition:opacity .3s}
+    background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(215,20,31,.10),transparent 70%);
+    pointer-events:none;z-index:0}
+  .rpc-screen > *{position:relative;z-index:1}
+  .rpc-bib{font-family:'JetBrains Mono';font-weight:800;font-size:11px;letter-spacing:.22em;
+    color:var(--red);text-transform:uppercase;line-height:1;
+    opacity:0;transition:opacity .3s;min-height:14px}
   .rpc-bib.show{opacity:1}
-  .rpc-label{position:absolute;top:30px;left:0;right:0;font-family:'JetBrains Mono';font-size:9px;
-    letter-spacing:.24em;color:#4a4a56;text-transform:uppercase;transition:opacity .3s}
+  .rpc-label{font-family:'JetBrains Mono';font-size:9px;letter-spacing:.24em;color:#4a4a56;
+    text-transform:uppercase;line-height:1}
   .rpc-name{
-    position:absolute;top:50%;left:10px;right:10px;
-    transform:translateY(-58%) scale(.88);
-    font-family:'Anton';font-size:clamp(18px,4.5vw,26px);text-transform:uppercase;
+    font-family:'Anton';font-size:clamp(20px,5vw,30px);text-transform:uppercase;
     color:#fff;line-height:1.05;letter-spacing:.02em;
-    opacity:0;transition:opacity .45s var(--ease),transform .45s var(--ease);
+    opacity:0;transform:scale(.88) translateY(4px);
+    transition:opacity .45s var(--ease),transform .45s var(--ease);
+    word-break:break-word;width:100%;
   }
-  .rpc-name.show{opacity:1;transform:translateY(-58%) scale(1)}
+  .rpc-name.show{opacity:1;transform:scale(1) translateY(0)}
   .rpc-name.flash{animation:nameflash .55s var(--ease)}
   @keyframes nameflash{0%{color:#fff}40%{color:var(--red)}100%{color:#fff}}
-  .rpc-wave{position:absolute;bottom:12px;left:0;right:0;font-family:'Barlow Condensed';font-weight:700;
-    font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--yellow);
-    opacity:0;transition:opacity .4s .18s var(--ease)}
+  .rpc-wave{font-family:'Barlow Condensed';font-weight:700;font-size:12px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--yellow);line-height:1;
+    opacity:0;transition:opacity .4s .18s var(--ease);min-height:14px}
   .rpc-wave.show{opacity:1}
+  /* phase tag stays absolute top-right, small enough not to interfere */
   .rpc-phase-tag{font-family:'JetBrains Mono';font-size:9px;letter-spacing:.18em;text-transform:uppercase;
     color:#fff;background:var(--red);padding:3px 7px;border-radius:2px;
-    position:absolute;top:10px;right:10px;
+    position:absolute;top:10px;right:10px;z-index:2;
     opacity:0;transition:opacity .3s,background .3s,color .3s}
   .rpc-phase-tag.show{opacity:1}
   .rpc-queue{display:flex;align-items:center;gap:10px;margin-top:10px;
     padding:9px 12px;background:rgba(255,255,255,.04);border-radius:6px;
-    border:1px solid rgba(255,255,255,.07);height:38px;overflow:hidden}
-  .rpc-qlabel{font-family:'JetBrains Mono';font-size:9px;letter-spacing:.22em;color:#5a5a64;text-transform:uppercase;flex:none}
+    border:1px solid rgba(255,255,255,.07);min-height:38px}
+  .rpc-qlabel{font-family:'JetBrains Mono';font-size:9px;letter-spacing:.22em;color:#5a5a64;
+    text-transform:uppercase;flex:none}
   .rpc-qname{font-family:'Barlow Condensed';font-weight:700;font-size:15px;text-transform:uppercase;
     letter-spacing:.04em;color:#9a9aa6;transition:opacity .3s}
 
@@ -501,10 +506,6 @@
     .brand-logo{height:26px}
     /* demo panels full width on mobile */
     .step-demo{max-width:100%}
-    /* rpc screen taller on mobile so name never overlaps labels */
-    .rpc-screen{height:170px}
-    .rpc-name{font-size:clamp(16px,6vw,22px);top:48%;transform:translateY(-52%) scale(.88)}
-    .rpc-name.show{transform:translateY(-52%) scale(1)}
     .wave-card{height:auto;min-height:200px}
     .wave-row{grid-template-columns:1fr 1fr;gap:8px}
     .wave-row .wave-info:last-child{grid-column:1/-1}
@@ -979,8 +980,12 @@
       const wvEl   = document.getElementById('rpcWave');
       const nxEl   = document.getElementById('rpcNext');
       if(!nmEl) return;
-      // reset all
-      [bibEl,nmEl,wvEl,phaseTag].forEach(el=>{ if(el){ el.classList.remove('show','flash'); el.textContent=''; } });
+      // reset — hide via opacity only, don't touch textContent yet (avoids height flicker)
+      bibEl.classList.remove('show');
+      nmEl.classList.remove('show','flash');
+      wvEl.classList.remove('show');
+      phaseTag.classList.remove('show');
+      phaseTag.style.background=''; phaseTag.style.color='';
       if(labelEl) labelEl.textContent='WELCOME,';
       if(phaseLabel) phaseLabel.textContent='WELCOME SCREEN';
       if(nxEl) nxEl.textContent=a.next;
