@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
 <title>20FIT Race Lab — End-to-end race technology for Asia</title>
 <meta name="description" content="20FIT Race Lab connects every part of your event — welcome, check-in, chip timing, live leaderboard, finish automation and photo sales — into one system. Built for hybrid races, marathons and endurance events across Asia." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -106,6 +106,77 @@
   .hero h1 em{font-style:normal;color:var(--red)}
   .hero p.sub{font-size:clamp(16px,1.4vw,18.5px);color:var(--muted);max-width:520px;margin:24px 0 34px;line-height:1.62}
   .hero p.sub b{color:var(--ink);font-weight:700}
+
+  /* market flags */
+  .market-row{margin:20px 0 0;display:flex;flex-direction:column;gap:10px}
+  .market-label{font-family:'JetBrains Mono';font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-2)}
+  .market-flags{display:flex;flex-wrap:wrap;gap:8px}
+  .mflag{font-family:'Barlow Condensed';font-weight:700;font-size:14px;letter-spacing:.03em;
+    text-transform:uppercase;color:var(--ink-soft);background:var(--paper-2);
+    border:1px solid var(--line-strong);border-radius:30px;padding:5px 13px;
+    transition:all .2s var(--ease)}
+  .mflag:hover{background:var(--red);color:#fff;border-color:var(--red)}
+
+  /* rpc tabs */
+  .rpc-tabs{display:flex;gap:6px;margin-bottom:14px}
+  .rpc-tab{font-family:'Barlow Condensed';font-weight:800;font-size:13px;letter-spacing:.08em;
+    text-transform:uppercase;border:1px solid #3a3a44;background:transparent;color:#8b8b96;
+    border-radius:4px;padding:6px 14px;cursor:pointer;transition:all .2s}
+  .rpc-tab.active{background:var(--red);color:#fff;border-color:var(--red)}
+
+  /* qr scan demo */
+  .qr-scan{display:flex;gap:12px;align-items:flex-start}
+  .qr-box{position:relative;width:84px;height:84px;flex:none;background:#101015;
+    border-radius:6px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .qr-corner{position:absolute;width:14px;height:14px;border-color:var(--red);border-style:solid}
+  .qr-corner.tl{top:5px;left:5px;border-width:2px 0 0 2px}
+  .qr-corner.tr{top:5px;right:5px;border-width:2px 2px 0 0}
+  .qr-corner.bl{bottom:5px;left:5px;border-width:0 0 2px 2px}
+  .qr-corner.br{bottom:5px;right:5px;border-width:0 2px 2px 0}
+  .qr-line{position:absolute;top:0;left:8px;right:8px;height:2px;background:var(--red);
+    box-shadow:0 0 8px var(--red);animation:qrscan 1.8s ease-in-out infinite}
+  @keyframes qrscan{0%{top:8px}50%{top:calc(100% - 8px)}100%{top:8px}}
+  #qrTxt{font-family:'JetBrains Mono';font-size:9px;letter-spacing:.14em;color:#6d6d78;text-transform:uppercase}
+  .qr-result{flex:1}
+  #packStatus{transition:color .3s}
+  #packStatus.ok{color:#22d39a}
+
+  /* why-tech section */
+  .why-tech{background:var(--ink);color:var(--paper)}
+  .why-tech .sec-head h2{color:var(--paper)}
+  .why-tech .sec-head p{color:rgba(255,255,255,.55)}
+  .why-tech .eyebrow{color:rgba(255,255,255,.45)}
+  .why-tech .eyebrow::before{background:var(--red)}
+  .why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .why-card{background:var(--ink-2);border:1px solid rgba(255,255,255,.08);border-radius:10px;
+    padding:28px;position:relative;overflow:hidden;cursor:default;
+    transition:border-color .3s,transform .3s var(--ease),box-shadow .3s}
+  .why-card:hover{border-color:rgba(255,255,255,.2);transform:translateY(-3px);box-shadow:0 20px 50px -30px rgba(0,0,0,.7)}
+  .why-card::after{content:"";position:absolute;top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,var(--red),var(--magenta));transform:scaleX(0);transform-origin:left;
+    transition:transform .4s var(--ease)}
+  .why-card:hover::after,.why-card.lit::after{transform:scaleX(1)}
+  .why-icon-wrap{margin-bottom:14px}
+  .why-icon{width:46px;height:46px;border-radius:8px;background:rgba(215,20,31,.12);
+    border:1px solid rgba(215,20,31,.3);display:flex;align-items:center;justify-content:center;font-size:22px;
+    transition:transform .4s var(--ease)}
+  .why-card:hover .why-icon{transform:scale(1.12) rotate(-4deg)}
+  .why-badge{font-family:'JetBrains Mono';font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--red);margin-bottom:10px}
+  .why-card h3{font-family:'Barlow Condensed';font-weight:800;font-size:22px;text-transform:uppercase;
+    color:var(--paper);letter-spacing:.01em}
+  .why-card p{font-size:14px;color:rgba(255,255,255,.5);margin-top:8px;line-height:1.6}
+  .why-meter{margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.07)}
+  .why-bar{height:3px;background:linear-gradient(90deg,var(--red),var(--magenta));border-radius:2px;width:0;
+    transition:width 1.2s var(--ease)}
+  .why-bar.green{background:linear-gradient(90deg,#22d39a,#00b37a)}
+  .why-meter span{font-family:'JetBrains Mono';font-size:10px;letter-spacing:.08em;color:rgba(255,255,255,.35);
+    display:block;margin-top:7px}
+
+  /* footer address */
+  .foot-addr{font-style:normal;font-size:13px;color:var(--muted);margin-top:14px;line-height:1.7;
+    display:flex;gap:7px;align-items:flex-start}
+  .foot-addr svg{flex:none;margin-top:3px;opacity:.6}
   .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
   .hero-foot{margin-top:34px;display:flex;gap:26px;flex-wrap:wrap;align-items:center;
     font-family:'JetBrains Mono';font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-2)}
@@ -356,6 +427,7 @@
     .video-portrait{max-width:300px;margin:0 auto}
     .inq-grid{grid-template-columns:1fr;gap:38px}
     .formats-grid{grid-template-columns:1fr}
+    .why-grid{grid-template-columns:1fr}
     .stats-grid{grid-template-columns:1fr 1fr;gap:32px 24px}
     .sec{padding:74px 0}
   }
@@ -410,6 +482,15 @@
         <a href="#inquiry" class="btn btn-red btn-lg">Request a demo</a>
         <a href="#system" class="btn btn-ghost btn-lg">See how it works</a>
       </div>
+      <div class="market-row">
+        <span class="market-label">Perfect for events in</span>
+        <div class="market-flags">
+          <span class="mflag">🇮🇩 Indonesia</span>
+          <span class="mflag">🇲🇾 Malaysia</span>
+          <span class="mflag">🇸🇬 Singapore</span>
+          <span class="mflag">🇹🇭 Thailand</span>
+        </div>
+      </div>
       <div class="hero-foot">
         <span>Chip &amp; lap timing</span>
         <span>Live leaderboard</span>
@@ -463,16 +544,38 @@
       <div class="step" data-demo="1">
         <div class="step-num">02</div>
         <div class="step-body">
-          <h3>Registration Check-In <span class="chip">Verify</span></h3>
-          <p>Confirm participant data on the spot, then trigger an on-screen name display and live announcement for an exciting arrival experience. No clipboards, no manual lists.</p>
+          <h3>Registration &amp; Race Pack Collection <span class="chip">Verify</span></h3>
+          <p>Digitise your entire Race Pack Collection process. Athletes scan their QR, data confirms instantly, and the system prints their label and logs their pack as collected — no queues, no paperwork, no human error.</p>
           <div class="step-demo">
-            <div class="scr-top"><span class="scr-dot"></span> CHECK-IN · EXAMPLE</div>
-            <div class="ci-row"><span>BIB</span><b>1042</b></div>
-            <div class="ci-row"><span>Name</span><b>Cleveria Jessika</b></div>
-            <div class="ci-row"><span>Category</span><b>Single Women Full · Wave 12</b></div>
-            <div class="ci-foot">
-              <span class="ci-status" id="ciStatus">PENDING</span>
-              <button class="demo-mini-btn" id="ciBtn">Confirm check-in</button>
+            <div class="rpc-tabs">
+              <button class="rpc-tab active" data-tab="rpc">Race Pack</button>
+              <button class="rpc-tab" data-tab="ci">Check-In</button>
+            </div>
+            <div id="tabRpc" class="rpc-panel">
+              <div class="scr-top"><span class="scr-dot"></span> RACE PACK COLLECTION</div>
+              <div class="qr-scan">
+                <div class="qr-box" id="qrBox">
+                  <div class="qr-corner tl"></div><div class="qr-corner tr"></div>
+                  <div class="qr-corner bl"></div><div class="qr-corner br"></div>
+                  <div class="qr-line" id="qrLine"></div>
+                  <span id="qrTxt">SCAN QR</span>
+                </div>
+                <div class="qr-result" id="qrResult">
+                  <div class="ci-row"><span>BIB</span><b>1042</b></div>
+                  <div class="ci-row"><span>Name</span><b>Cleveria Jessika</b></div>
+                  <div class="ci-row"><span>Pack</span><b id="packStatus">Awaiting scan…</b></div>
+                </div>
+              </div>
+            </div>
+            <div id="tabCi" class="rpc-panel" style="display:none">
+              <div class="scr-top"><span class="scr-dot"></span> CHECK-IN · VERIFY</div>
+              <div class="ci-row"><span>BIB</span><b>1042</b></div>
+              <div class="ci-row"><span>Name</span><b>Cleveria Jessika</b></div>
+              <div class="ci-row"><span>Category</span><b>Single Women Full · Wave 12</b></div>
+              <div class="ci-foot">
+                <span class="ci-status" id="ciStatus">PENDING</span>
+                <button class="demo-mini-btn" id="ciBtn">Confirm check-in</button>
+              </div>
             </div>
           </div>
         </div>
@@ -485,7 +588,7 @@
           <p>Assign a chip to each participant for accurate race timing — start, splits and finish captured automatically for every athlete across every wave.</p>
           <div class="step-demo">
             <div class="scr-top"><span class="scr-dot"></span> CHIP DETECTION · SEAMLESS</div>
-            <div class="mat"><div class="chip-dot" id="chipDot"></div><span class="mat-label">TIMING MAT</span></div>
+            <div class="mat" style="overflow:hidden;position:relative"><div class="chip-dot" id="chipDot"></div><span class="mat-label">TIMING MAT</span></div>
             <div class="chip-events">
               <div class="ev" id="evStart"><i></i> START<b>--:--:--</b></div>
               <div class="ev" id="evFinish"><i></i> FINISH<b>--:--:--</b></div>
@@ -603,6 +706,47 @@
   </div>
 </section>
 
+<!-- WHY / TECHNOLOGY × EXCELLENCE -->
+<section class="sec why-tech" id="why-tech">
+  <div class="wrap">
+    <div class="sec-head reveal" style="max-width:820px;margin-bottom:52px">
+      <span class="eyebrow">Why it matters</span>
+      <h2>Technology meets operational excellence.</h2>
+      <p>Precision in results isn't just about the right software — it's what happens when intelligent systems work in sync with the people running the race.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal" data-idx="0">
+        <div class="why-icon-wrap"><div class="why-icon" id="wi0"><span>⚡</span></div></div>
+        <div class="why-badge">SPEED</div>
+        <h3>Zero-delay results</h3>
+        <p>Chip data hits the server in under a second. Athletes see their time the moment they cross — no delays, no manual entry, no spreadsheets at the end of the night.</p>
+        <div class="why-meter"><div class="why-bar" data-w="97"></div><span>97% faster results delivery</span></div>
+      </div>
+      <div class="why-card reveal" data-idx="1">
+        <div class="why-icon-wrap"><div class="why-icon" id="wi1"><span>🎯</span></div></div>
+        <div class="why-badge">ACCURACY</div>
+        <h3>Chip-verified every time</h3>
+        <p>Every start, split and finish is verified by chip, not a volunteer with a clipboard. The result database updates automatically and is audit-ready from the first athlete to the last.</p>
+        <div class="why-meter"><div class="why-bar" data-w="100"></div><span>100% chip-verified records</span></div>
+      </div>
+      <div class="why-card reveal" data-idx="2">
+        <div class="why-icon-wrap"><div class="why-icon" id="wi2"><span>🔗</span></div></div>
+        <div class="why-badge">CONNECTED</div>
+        <h3>Every moment in sync</h3>
+        <p>Registration, timing, leaderboard, email and photos don't talk to each other — they ARE each other. One platform means one source of truth for your entire event operations team.</p>
+        <div class="why-meter"><div class="why-bar" data-w="6" data-label="6 systems → 1 platform"></div><span>6 systems → 1 platform</span></div>
+      </div>
+      <div class="why-card reveal" data-idx="3">
+        <div class="why-icon-wrap"><div class="why-icon" id="wi3"><span>📈</span></div></div>
+        <div class="why-badge">REVENUE</div>
+        <h3>Operations that earn</h3>
+        <p>Your event collects more photos, generates more sales, and builds athlete loyalty through every automated touchpoint — turning operational overhead into a competitive advantage.</p>
+        <div class="why-meter why-meter-green"><div class="why-bar green" data-w="88"></div><span>+88% athlete engagement vs manual events</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- INQUIRY -->
 <section class="sec inquiry" id="inquiry">
   <div class="wrap inq-grid">
@@ -678,6 +822,10 @@
       <div class="foot-brand">
         <span class="logo-mark foot-logo" role="img" aria-label="20FIT Race Lab"></span>
         <p>End-to-end race technology — welcome, timing, leaderboard, finish and photos. Built in Asia, for events across Asia.</p>
+        <address class="foot-addr">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Jl. Sinabung No. 9, Kebayoran Baru<br>Jakarta Selatan, Indonesia
+        </address>
       </div>
       <div class="foot-links">
         <div class="foot-col">
@@ -737,26 +885,48 @@
     typeName(names[0]);
   }
 
-  // 02 — Check-in confirm
+  // 02 — RPC tabs + check-in confirm
   function runCheckIn(){
-    const st = document.getElementById('ciStatus'); if(!st) return;
+    const st=document.getElementById('ciStatus'); if(!st) return;
     st.textContent='PENDING'; st.classList.remove('done');
     setTimeout(()=>{ st.textContent='✓ CHECKED IN'; st.classList.add('done'); }, 650);
   }
   function demoCheckIn(){
-    const btn = document.getElementById('ciBtn');
+    // wire tabs
+    document.querySelectorAll('.rpc-tab').forEach(tab=>{
+      if(!tab.dataset.bound){ tab.dataset.bound='1';
+        tab.addEventListener('click',()=>{
+          document.querySelectorAll('.rpc-tab').forEach(t=>t.classList.remove('active'));
+          tab.classList.add('active');
+          const target = tab.dataset.tab;
+          document.getElementById('tabRpc').style.display = target==='rpc'?'block':'none';
+          document.getElementById('tabCi').style.display  = target==='ci' ?'block':'none';
+        });
+      }
+    });
+    // auto QR scan
+    setTimeout(()=>{
+      const ps=document.getElementById('packStatus'); if(!ps) return;
+      ps.textContent='✓ COLLECTED'; ps.classList.add('ok');
+    }, 1400);
+    // wire check-in button
+    const btn=document.getElementById('ciBtn');
     if(btn && !btn.dataset.bound){ btn.dataset.bound='1'; btn.addEventListener('click',runCheckIn); }
     runCheckIn();
   }
 
-  // 03 — Chip timing: detect start then finish
+  // 03 — Chip timing: clone trick to restart CSS animation reliably
   function demoChip(){
-    const dot=document.getElementById('chipDot'), s=document.getElementById('evStart'), f=document.getElementById('evFinish');
-    if(!dot) return;
-    [s,f].forEach(e=>{e.classList.remove('hit'); e.querySelector('b').textContent='--:--:--';});
-    dot.classList.remove('run'); void dot.offsetWidth; dot.classList.add('run');
-    setTimeout(()=>{ s.classList.add('hit'); s.querySelector('b').textContent='00:00:00'; }, 350);
-    setTimeout(()=>{ f.classList.add('hit'); f.querySelector('b').textContent='00:41:52'; }, 2300);
+    const mat=document.querySelector('.mat'); if(!mat) return;
+    const old=document.getElementById('chipDot');
+    if(old) old.remove();
+    const dot=document.createElement('div'); dot.id='chipDot'; dot.className='chip-dot';
+    mat.insertBefore(dot, mat.firstChild);
+    const s=document.getElementById('evStart'), f=document.getElementById('evFinish');
+    [s,f].forEach(e=>{ if(e){ e.classList.remove('hit'); e.querySelector('b').textContent='--:--:--'; } });
+    void dot.offsetWidth; dot.classList.add('run');
+    setTimeout(()=>{ if(s){ s.classList.add('hit'); s.querySelector('b').textContent='00:00:00'; } }, 350);
+    setTimeout(()=>{ if(f){ f.classList.add('hit'); f.querySelector('b').textContent='00:41:52'; } }, 2300);
   }
 
   // 04 — Live leaderboard realtime + audience
@@ -873,6 +1043,22 @@
     },{threshold:.4});
     countIO.observe(statsGrid);
   }
+
+  // ---- Why-tech meter bars animate when in view ----
+  document.querySelectorAll('.why-card').forEach(card=>{
+    const bar = card.querySelector('.why-bar');
+    if(!bar) return;
+    const w = bar.dataset.w;
+    const whyIO = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(!e.isIntersecting) return;
+        whyIO.unobserve(e.target);
+        e.target.classList.add('lit');
+        bar.style.width = w + '%';
+      });
+    },{threshold:.4});
+    whyIO.observe(card);
+  });
 
   // ---- Form validation + success ----
   const form = document.getElementById('inqForm');
