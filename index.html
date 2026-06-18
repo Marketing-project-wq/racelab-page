@@ -84,7 +84,7 @@
   .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line-strong);padding:10px 22px;font-size:15px}
   .btn-ghost:hover{border-color:var(--ink);background:rgba(16,16,20,.03)}
   .btn-lg{padding:14px 30px;font-size:16.5px}
-  .nav-mobile-cta{display:none}
+  .nav-cta{white-space:nowrap}
 
   /* ---------- HERO ---------- */
   .hero{position:relative;padding:84px 0 72px;overflow:hidden}
@@ -350,7 +350,6 @@
   /* ---------- RESPONSIVE ---------- */
   @media(max-width:900px){
     .navlinks{display:none}
-    .nav-mobile-cta{display:inline-flex}
     .hero-inner{grid-template-columns:1fr;gap:38px}
     .hero-media{align-items:center}
     .media-label{text-align:center;margin:0 auto 14px}
@@ -394,8 +393,7 @@
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
       </a>
     </nav>
-    <a href="#inquiry" class="btn btn-red">Talk to sales</a>
-    <a href="#inquiry" class="btn btn-red nav-mobile-cta">Contact</a>
+    <a href="#inquiry" class="btn btn-red nav-cta">Request demo</a>
   </div>
 </header>
 
