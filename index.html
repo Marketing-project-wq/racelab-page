@@ -1198,6 +1198,10 @@
     whyIO.observe(card);
   });
 
+  // ---- Supabase config ----
+  const SUPA_URL = 'https://cpvzwqptzcxnwzfzgrmt.supabase.co';
+  const SUPA_KEY = 'sb_publishable_0t9vEOYeIo_YM1__X5iNMQ_qXofEozw';
+
   // ---- Form validation + success ----
   const form = document.getElementById('inqForm');
   const ok = document.getElementById('okState');
@@ -1220,17 +1224,34 @@
     });
     if(!valid){ form.querySelector('.err')?.scrollIntoView({behavior:'smooth',block:'center'}); return; }
 
-    // Collect payload — ready to POST to your sales backend / n8n webhook / Google Form
     const data = Object.fromEntries(new FormData(form).entries());
+    const submitBtn = form.querySelector('button[type="submit"]');
+    submitBtn.textContent = 'Sending…';
+    submitBtn.disabled = true;
 
-    // TODO (wire to sales pipeline): replace the block below with a real fetch().
-    // Example:
-    // fetch('https://YOUR-N8N-WEBHOOK-URL', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
-    console.log('Race Lab inquiry:', data);
-
-    form.style.display='none';
-    ok.classList.add('show');
-    ok.scrollIntoView({behavior:'smooth',block:'center'});
+    fetch(SUPA_URL + '/rest/v1/inquiries', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPA_KEY,
+        'Authorization': 'Bearer ' + SUPA_KEY,
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(res => {
+      if(!res.ok) throw new Error('HTTP ' + res.status);
+      form.style.display = 'none';
+      ok.classList.add('show');
+      ok.scrollIntoView({behavior:'smooth', block:'center'});
+    })
+    .catch(() => {
+      submitBtn.textContent = 'Send inquiry';
+      submitBtn.disabled = false;
+      submitBtn.style.background = '#b5121f';
+      setTimeout(() => submitBtn.style.background = '', 2000);
+      alert('Something went wrong — please try again or contact us directly.');
+    });
   });
   form.querySelectorAll('input,select').forEach(el=>{
     el.addEventListener('input',()=>setErr(el.closest('.field'),false));
