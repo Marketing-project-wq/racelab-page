@@ -944,7 +944,6 @@
 
   // Web Audio chime
 
-  const demoFns=[demoWelcomeRPC,demoWave,demoChip,demoLeaderboard,demoFinish,demoRevenue];
   function demoWelcomeRPC(){
     const athletes=[
       {bib:'#0842',name:'JASON WU',        wave:'Wave 8 · Single Men Full',   pack:'RACE PACK COLLECTED ✓', next:'Cleveria Jessika'},
@@ -1124,6 +1123,7 @@
     requestAnimationFrame(step);
   }
 
+  const demoFns=[demoWelcomeRPC,demoWave,demoChip,demoLeaderboard,demoFinish,demoRevenue];
   function playStepDemo(i){ try{ demoFns[i] && demoFns[i](); }catch(e){} }
 
   function progressTimeline(){
